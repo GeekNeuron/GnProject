@@ -1,7 +1,7 @@
 # GNProject - A Dynamic Project Showcase
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-brightgreen)](https://your-username.github.io/GNProject/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Deployed-brightgreen)](https://GeekNeuron.github.io/GNProject/)
 [![Built with Love](https://img.shields.io/badge/Built%20with-❤️-ff69b4.svg)](https://github.com/GeekNeuron)
 
 A clean, modern, and highly customizable single-page portfolio template to dynamically showcase your personal projects. Built with vanilla JavaScript, it's lightweight, fast, and easy to deploy on GitHub Pages.
@@ -10,7 +10,7 @@ A clean, modern, and highly customizable single-page portfolio template to dynam
 
 ## 🚀 Live Demo
 
-Check out the live demo here: **[https://your-username.github.io/GNProject/](https://GeekNeuron.github.io/GNProject/)**
+Check out the live demo here: **[https://GeekNeuron.github.io/GNProject/](https://GeekNeuron.github.io/GNProject/)**
 
 *(Replace the link above with your actual GitHub Pages URL)*
 
