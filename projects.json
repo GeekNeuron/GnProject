@@ -4,13 +4,13 @@
     "status": "Completed",
     "name": "My Awesome App",
     "version": "v2.1.0",
-    "icon": "https://via.placeholder.com/80/00A480/ffffff?text=App",
+    "icon": "assets/icons/icon.png",
     "tags": ["Kotlin", "Jetpack Compose", "MVVM"],
     "description": "This is a detailed description of my awesome Android application. It does amazing things and was built with modern technologies.",
     "repoUrl": "https://github.com/your-username/your-repo",
     "screenshots": [
-      "https://via.placeholder.com/400x225/A4C639/ffffff?text=Screenshot+1",
-      "https://via.placeholder.com/400x225/A4C639/ffffff?text=Screenshot+2"
+      "assets/screenshots/screenshot.png",
+      "assets/screenshots/screenshot.png"
     ]
   },
   {
@@ -18,13 +18,13 @@
     "status": "In Progress",
     "name": "Browser Enhancer",
     "version": "v0.5.2",
-    "icon": "https://via.placeholder.com/80/4285F4/ffffff?text=Ext",
+    "icon": "assets/icons/icon.png",
     "tags": ["JavaScript", "CSS3", "HTML5"],
     "description": "A Chrome extension that enhances your Browse experience by doing something very useful.",
     "repoUrl": "https://github.com/your-username/your-repo",
     "screenshots": [
-        "https://via.placeholder.com/400x225/f1c40f/ffffff?text=Screenshot+A",
-        "https://via.placeholder.com/400x225/f1c40f/ffffff?text=Screenshot+B"
+        "assets/screenshots/screenshot.png",
+        "assets/screenshots/screenshot.png"
     ]
   },
   {
@@ -32,7 +32,7 @@
     "status": "Completed",
     "name": "Portfolio Site",
     "version": "v1.0.0",
-    "icon": "https://via.placeholder.com/80/e67e22/ffffff?text=Web",
+    "icon": "assets/icons/icon.png",
     "tags": ["React", "Sass", "Vite"],
     "description": "A personal portfolio website to showcase my skills and projects, built with a modern tech stack.",
     "repoUrl": "https://github.com/your-username/your-repo",
