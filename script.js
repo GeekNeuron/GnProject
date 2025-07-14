@@ -85,31 +85,31 @@ document.addEventListener('DOMContentLoaded', () => {
      * Filters visible projects based on the search term.
      */
     function filterProjects() {
-        const searchTerm = searchBar.value.toLowerCase();
-        let visibleProjectsCount = 0;
-        
-        document.querySelectorAll('.project-container').forEach(container => {
-            const projectIndex = parseInt(container.dataset.projectIndex, 10);
-            const project = allProjects[projectIndex];
-            const activeTabId = document.querySelector('.tab-link.active').dataset.tab;
+    const searchTerm = searchBar.value.toLowerCase();
+    let visibleProjectsCount = 0;
+    
+    document.querySelectorAll('.project-container').forEach(container => {
+        const projectIndex = parseInt(container.dataset.projectIndex, 10);
+        const project = allProjects[projectIndex];
+        const activeTabId = document.querySelector('.tab-link.active').dataset.tab;
 
-            const matchesSearch = searchTerm === '' ||
-                project.name.toLowerCase().includes(searchTerm) ||
-                project.description.toLowerCase().includes(searchTerm) ||
-                project.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+        const matchesSearch = searchTerm === '' ||
+            project.name.toLowerCase().includes(searchTerm) ||
+            project.description.toLowerCase().includes(searchTerm) ||
+            project.tags.some(tag => tag.toLowerCase().includes(searchTerm));
 
-            const isInActiveTab = project.category === activeTabId;
-            
-            if (matchesSearch && isInActiveTab) {
-                container.classList.remove('hidden');
-                visibleProjectsCount++;
-            } else {
-                container.classList.add('hidden');
-            }
-        });
+        const isInActiveTab = project.category === activeTabId;
         
-        noResultsMsg.classList.toggle('hidden', visibleProjectsCount > 0 || searchTerm === '');
-    }
+        if (matchesSearch && isInActiveTab) {
+            container.classList.remove('hidden');
+            visibleProjectsCount++;
+        } else {
+            container.classList.add('hidden');
+        }
+    });
+    
+    noResultsMsg.classList.toggle('hidden', visibleProjectsCount > 0 || searchTerm === '');
+}
     
     // --- Event Listeners ---
 
