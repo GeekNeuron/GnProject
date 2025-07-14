@@ -10,8 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabLinks = document.querySelectorAll('.tab-link');
     const tabContents = document.querySelectorAll('.tab-content');
     const mainContent = document.querySelector('main');
-    const searchBar = document.getElementById('search-bar');
-    const noResultsMsg = document.getElementById('no-results-message');
     const lightbox = document.getElementById('lightbox');
     
     let allProjects = [];
@@ -80,38 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </article>
             </div>`;
     }
-
-    /**
-     * Filters visible projects based on the search term inside the active tab.
-     */
-    function filterProjects() {
-        const searchTerm = searchBar.value.toLowerCase();
-        const activeTab = document.querySelector('.tab-content:not([hidden])');
-        if (!activeTab) return;
-
-        const projectsInActiveTab = activeTab.querySelectorAll('.project-container');
-        let visibleProjectsCount = 0;
-        
-        projectsInActiveTab.forEach(container => {
-            const projectIndex = parseInt(container.dataset.projectIndex, 10);
-            const project = allProjects[projectIndex];
-
-            const matchesSearch = searchTerm === '' ||
-                project.name.toLowerCase().includes(searchTerm) ||
-                project.description.toLowerCase().includes(searchTerm) ||
-                project.tags.some(tag => tag.toLowerCase().includes(searchTerm));
-
-            if (matchesSearch) {
-                container.classList.remove('hidden');
-                visibleProjectsCount++;
-            } else {
-                container.classList.add('hidden');
-            }
-        });
-        
-        const shouldShowMessage = searchTerm !== '' && visibleProjectsCount === 0;
-        noResultsMsg.classList.toggle('hidden', !shouldShowMessage);
-    }
     
     // --- Event Listeners ---
 
@@ -131,26 +97,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 item.classList.remove('active');
                 item.setAttribute('aria-selected', 'false');
             });
-            tabContents.forEach(item => item.hidden = true);
+            tabContents.forEach(item => item.classList.add('hidden'));
 
             // Activate the clicked tab
             link.classList.add('active');
             link.setAttribute('aria-selected', 'true');
             const activeTabContent = document.getElementById(link.getAttribute('aria-controls'));
-            activeTabContent.hidden = false;
-            
-            // Reset search state without complex filtering
-            searchBar.value = '';
-            // Make all projects within the new tab visible again
-            activeTabContent.querySelectorAll('.project-container').forEach(container => {
-                container.classList.remove('hidden');
-            });
-            noResultsMsg.classList.add('hidden');
-        });
-    });
-
-    // 3. Search
-    searchBar.addEventListener('input', filterProjects);
+            if (activeTabContent) {
+            activeTabContent.classList.remove('hidden');
+            }
 
     // 4. Main content event delegation (Accordion, Lightbox, Tags)
     mainContent.addEventListener('click', (event) => {
@@ -170,12 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
             lightbox.classList.add('active');
             document.getElementById('lightbox-img').src = target.src;
         }
-
-        if (target.matches('.tag')) {
-            searchBar.value = target.dataset.tag;
-            filterProjects();
-        }
-    });
 
     // 5. Lightbox Close
     lightbox.addEventListener('click', (e) => {
