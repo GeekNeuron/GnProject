@@ -1,6 +1,6 @@
 /**
  * GNProject - A Professional Portfolio Page
- * Final Version with all features and optimizations.
+ * Final Corrected Version
  */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -82,25 +82,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Filters visible projects based on the search term.
+     * Filters visible projects based on the search term inside the active tab.
      */
     function filterProjects() {
         const searchTerm = searchBar.value.toLowerCase();
+        const activeTab = document.querySelector('.tab-content:not([hidden])');
+        if (!activeTab) return;
+
+        const projectsInActiveTab = activeTab.querySelectorAll('.project-container');
         let visibleProjectsCount = 0;
         
-        document.querySelectorAll('.project-container').forEach(container => {
+        projectsInActiveTab.forEach(container => {
             const projectIndex = parseInt(container.dataset.projectIndex, 10);
             const project = allProjects[projectIndex];
-            const activeTabId = document.querySelector('.tab-link.active').dataset.tab;
 
             const matchesSearch = searchTerm === '' ||
                 project.name.toLowerCase().includes(searchTerm) ||
                 project.description.toLowerCase().includes(searchTerm) ||
                 project.tags.some(tag => tag.toLowerCase().includes(searchTerm));
 
-            const isInActiveTab = project.category === activeTabId;
-            
-            if (matchesSearch && isInActiveTab) {
+            if (matchesSearch) {
                 container.classList.remove('hidden');
                 visibleProjectsCount++;
             } else {
@@ -108,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // FIX: Correct logic to show the "no results" message
         const shouldShowMessage = searchTerm !== '' && visibleProjectsCount === 0;
         noResultsMsg.classList.toggle('hidden', !shouldShowMessage);
     }
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
     });
 
-    // 2. Tab System with Accessibility
+    // 2. Tab System (Simplified and Corrected)
     tabLinks.forEach(link => {
         link.addEventListener('click', () => {
             // Deactivate all tabs
@@ -139,18 +139,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const activeTabContent = document.getElementById(link.getAttribute('aria-controls'));
             activeTabContent.hidden = false;
             
-            // FIX: Reset search and show all projects in the new tab correctly
+            // Reset search state without complex filtering
             searchBar.value = '';
-            document.querySelectorAll('.project-container').forEach(container => {
-                const projectIndex = parseInt(container.dataset.projectIndex, 10);
-                const project = allProjects[projectIndex];
-                if (project.category === link.dataset.tab) {
-                    container.classList.remove('hidden');
-                } else {
-                    container.classList.add('hidden');
-                }
+            // Make all projects within the new tab visible again
+            activeTabContent.querySelectorAll('.project-container').forEach(container => {
+                container.classList.remove('hidden');
             });
-            noResultsMsg.classList.add('hidden'); // Hide message on tab switch
+            noResultsMsg.classList.add('hidden');
         });
     });
 
