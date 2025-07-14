@@ -351,51 +351,40 @@ main {
 
 /* Footer */
 footer {
-    background-color: var(--container-bg);
-    padding-top: 3rem;
+    background-color: var(--body-bg); /* Match the main background */
     margin-top: auto;
     border-top: 1px solid var(--border-color);
     width: 100%;
-    color: var(--text-color-primary);
+    padding: 1.5rem 1rem;
+    font-size: 0.85rem;
+    color: var(--tag-text);
     transition: background-color 0.4s ease, border-color 0.4s ease;
 }
-.footer-content {
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping on small screens */
+    gap: 1rem;
 }
-.footer-section {
-    flex: 1;
-    min-width: 200px;
+
+.footer-container nav {
+    display: flex;
+    gap: 1.5rem;
 }
-.footer-section h4 {
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-}
-.footer-section p,
-.footer-section ul {
-    line-height: 1.7;
-    font-size: 0.95rem;
-    list-style: none;
-}
-.footer-section a {
-    color: var(--text-color-primary);
+
+.footer-container a {
+    color: var(--tag-text);
     text-decoration: none;
     transition: color 0.3s ease;
 }
-.footer-section a:hover {
+
+.footer-container a:hover {
     color: var(--button-bg);
-}
-.footer-bottom {
-    text-align: center;
-    padding: 1.5rem;
-    margin-top: 2rem;
-    border-top: 1px solid var(--border-color);
-    transition: border-color 0.4s ease;
+    text-decoration: underline;
 }
 
 /* Lightbox & Utilities */
