@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        noResultsMsg.classList.toggle('hidden', visibleProjectsCount === 0 && searchTerm !== '');
+        noResultsMsg.classList.toggle('hidden', visibleProjectsCount > 0 || searchTerm === '');
     }
     
     // --- Event Listeners ---
