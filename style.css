@@ -67,7 +67,7 @@ header {
 
 .header-text {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 0.75rem;
     cursor: pointer;
 }
