@@ -85,31 +85,33 @@ document.addEventListener('DOMContentLoaded', () => {
      * Filters visible projects based on the search term.
      */
     function filterProjects() {
-    const searchTerm = searchBar.value.toLowerCase();
-    let visibleProjectsCount = 0;
-    
-    document.querySelectorAll('.project-container').forEach(container => {
-        const projectIndex = parseInt(container.dataset.projectIndex, 10);
-        const project = allProjects[projectIndex];
-        const activeTabId = document.querySelector('.tab-link.active').dataset.tab;
-
-        const matchesSearch = searchTerm === '' ||
-            project.name.toLowerCase().includes(searchTerm) ||
-            project.description.toLowerCase().includes(searchTerm) ||
-            project.tags.some(tag => tag.toLowerCase().includes(searchTerm));
-
-        const isInActiveTab = project.category === activeTabId;
+        const searchTerm = searchBar.value.toLowerCase();
+        let visibleProjectsCount = 0;
         
-        if (matchesSearch && isInActiveTab) {
-            container.classList.remove('hidden');
-            visibleProjectsCount++;
-        } else {
-            container.classList.add('hidden');
-        }
-    });
-    
-    noResultsMsg.classList.toggle('hidden', visibleProjectsCount > 0 || searchTerm === '');
-}
+        document.querySelectorAll('.project-container').forEach(container => {
+            const projectIndex = parseInt(container.dataset.projectIndex, 10);
+            const project = allProjects[projectIndex];
+            const activeTabId = document.querySelector('.tab-link.active').dataset.tab;
+
+            const matchesSearch = searchTerm === '' ||
+                project.name.toLowerCase().includes(searchTerm) ||
+                project.description.toLowerCase().includes(searchTerm) ||
+                project.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+
+            const isInActiveTab = project.category === activeTabId;
+            
+            if (matchesSearch && isInActiveTab) {
+                container.classList.remove('hidden');
+                visibleProjectsCount++;
+            } else {
+                container.classList.add('hidden');
+            }
+        });
+        
+        // FIX: Correct logic to show the "no results" message
+        const shouldShowMessage = searchTerm !== '' && visibleProjectsCount === 0;
+        noResultsMsg.classList.toggle('hidden', !shouldShowMessage);
+    }
     
     // --- Event Listeners ---
 
@@ -124,19 +126,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Tab System with Accessibility
     tabLinks.forEach(link => {
         link.addEventListener('click', () => {
+            // Deactivate all tabs
             tabLinks.forEach(item => {
                 item.classList.remove('active');
                 item.setAttribute('aria-selected', 'false');
             });
             tabContents.forEach(item => item.hidden = true);
 
+            // Activate the clicked tab
             link.classList.add('active');
             link.setAttribute('aria-selected', 'true');
             const activeTabContent = document.getElementById(link.getAttribute('aria-controls'));
             activeTabContent.hidden = false;
             
+            // FIX: Reset search and show all projects in the new tab correctly
             searchBar.value = '';
-            filterProjects();
+            document.querySelectorAll('.project-container').forEach(container => {
+                const projectIndex = parseInt(container.dataset.projectIndex, 10);
+                const project = allProjects[projectIndex];
+                if (project.category === link.dataset.tab) {
+                    container.classList.remove('hidden');
+                } else {
+                    container.classList.add('hidden');
+                }
+            });
+            noResultsMsg.classList.add('hidden'); // Hide message on tab switch
         });
     });
 
