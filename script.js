@@ -158,9 +158,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = event.target;
 
         if (target.matches('.view-button')) {
-            const isExpanded = target.getAttribute('aria-expanded') === 'true';
-            target.setAttribute('aria-expanded', !isExpanded);
-            target.closest('.project-card')?.classList.toggle('expanded');
+            const projectCard = target.closest('.project-card');
+            if (projectCard) {
+                projectCard.classList.toggle('expanded');
+                const isExpanded = projectCard.classList.contains('expanded');
+                target.textContent = isExpanded ? 'Hide' : 'View';
+                target.setAttribute('aria-expanded', isExpanded.toString());
+            }
         }
 
         if (target.matches('.screenshot-gallery img')) {
