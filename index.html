@@ -10,8 +10,17 @@
 <body>
 
     <header id="theme-switcher">
-        <h1>GNProject</h1>
-    </header>
+    <div class="header-content">
+        <div class="header-text">
+            <i class="fa-solid fa-code"></i> <h1>GNProject</h1>
+            <p class="header-subtitle">Showcasing Creative Projects</p>
+        </div>
+        <div class="search-wrapper">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="search-bar" placeholder="Search projects...">
+        </div>
+    </div>
+</header>
     
     <nav class="tabs" role="tablist" aria-label="Project Categories">
         <button role="tab" aria-controls="android-content" aria-selected="true" class="tab-link active" data-tab="android"><i class="fa-brands fa-android"></i> Android</button>
@@ -22,14 +31,6 @@
         <button role="tab" aria-controls="ios-content" aria-selected="false" class="tab-link" data-tab="ios"><i class="fa-brands fa-apple"></i> iOS</button>
     </nav>
     
-    <div class="filter-container">
-        <div class="search-wrapper">
-            <i class="fa-solid fa-search"></i>
-            <input type="text" id="search-bar" placeholder="Search projects by name, tag, or description...">
-        </div>
-        <button id="reset-filter-btn" class="hidden">Reset Filter <i class="fa-solid fa-times"></i></button>
-    </div>
-
     <main>
         <div id="android-content" role="tabpanel" class="tab-content active"></div>
         <div id="extensions-content" role="tabpanel" class="tab-content" hidden></div>
