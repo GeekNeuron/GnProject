@@ -452,3 +452,17 @@ footer {
     color: #fff;
     cursor: pointer;
 }
+
+.empty-tab-message {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--container-bg);
+    color: var(--tag-text);
+    border-radius: 16px;
+    border: 2px dashed var(--border-color);
+    margin-top: 1rem;
+}
+
+.hidden {
+    display: none !important;
+}
