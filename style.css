@@ -446,12 +446,14 @@ footer {
     }
 }
 
-/* Fix for Search and "No Results" Message */
+/* FIX: Add these styles for search, tabs, and lightbox functionality */
+
+/* This class fixes both the search filter and the tab switching issue */
 .hidden {
     display: none !important;
 }
 
-/* Styles for Lightbox functionality */
+/* These are missing styles for the image lightbox popup */
 .lightbox {
     position: fixed;
     z-index: 1000;
@@ -476,9 +478,6 @@ footer {
 .lightbox-content {
     max-width: 90vw;
     max-height: 85vh;
-    object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
 }
 
 .close-lightbox {
@@ -488,9 +487,4 @@ footer {
     font-size: 2.5rem;
     color: #fff;
     cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.close-lightbox:hover {
-    transform: scale(1.1);
 }
