@@ -9,18 +9,21 @@
 </head>
 <body>
 
-    <header id="theme-switcher">
-    <div class="header-content">
-        <div class="header-text">
-            <i class="fa-solid fa-code"></i> <h1>GNProject</h1>
-            <p class="header-subtitle">Showcasing Creative Projects</p>
+    <header>
+        <div class="header-content">
+            <div class="header-text">
+                <i class="fa-solid fa-code"></i>
+                <div class="header-title-group">
+                    <h1>GNProject</h1>
+                    <p class="header-subtitle">Showcasing Creative Projects</p>
+                </div>
+            </div>
+            <div class="search-wrapper">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="search-bar" placeholder="Search projects...">
+            </div>
         </div>
-        <div class="search-wrapper">
-            <i class="fa-solid fa-search"></i>
-            <input type="text" id="search-bar" placeholder="Search projects...">
-        </div>
-    </div>
-</header>
+    </header>
     
     <nav class="tabs" role="tablist" aria-label="Project Categories">
         <button role="tab" aria-controls="android-content" aria-selected="true" class="tab-link active" data-tab="android"><i class="fa-brands fa-android"></i> Android</button>
@@ -30,7 +33,7 @@
         <button role="tab" aria-controls="linux-content" aria-selected="false" class="tab-link" data-tab="linux"><i class="fa-brands fa-linux"></i> Linux</button>
         <button role="tab" aria-controls="ios-content" aria-selected="false" class="tab-link" data-tab="ios"><i class="fa-brands fa-apple"></i> iOS</button>
     </nav>
-    
+
     <main>
         <div id="android-content" role="tabpanel" class="tab-content active"></div>
         <div id="extensions-content" role="tabpanel" class="tab-content" hidden></div>
