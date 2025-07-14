@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Renders all project cards into their respective tab containers.
-     * @param {Array} projects - The array of project objects to render.
      */
     function renderProjects(projects) {
         tabContents.forEach(content => content.innerHTML = '');
@@ -47,10 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Creates the HTML string for a single project card with accessibility features.
-     * @param {Object} project - The project object.
-     * @param {number} index - The unique index of the project.
-     * @returns {string} The HTML string for the project card.
+     * Creates the HTML string for a single project card.
      */
     function createProjectCardHTML(project, index) {
         const tagsHTML = project.tags.map(tag => `<button class="tag" data-tag="${tag}">${tag}</button>`).join('');
@@ -70,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="primary-view">
                         <img src="${project.icon}" alt="${project.name} Icon" class="project-icon">
                         <div class="project-info">
-                            <h3>${project.name}<span class="project-version">${project.version}</span></h3>
+                            <h3>${project.name}</h3>
+                            <p class="project-version">Version ${project.version}</p>
                             <div class="tags">${tagsHTML}</div>
                         </div>
                     </div>
@@ -111,17 +108,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        noResultsMsg.classList.toggle('hidden', visibleProjectsCount > 0 && searchTerm !== '');
+        noResultsMsg.classList.toggle('hidden', visibleProjectsCount === 0 && searchTerm !== '');
     }
     
     // --- Event Listeners ---
 
     // 1. Theme Switcher
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') body.classList.add('dark-mode');
+    if (savedTheme === 'dark') body.classList.add('dark-theme');
     themeSwitcher.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+        body.classList.toggle('dark-theme');
+        localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
     });
 
     // 2. Tab System with Accessibility
