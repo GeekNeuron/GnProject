@@ -130,6 +130,9 @@ header {
         align-items: center;
         gap: 1rem;
     }
+        .header-text {
+        gap: 0.5rem;
+    }
     .header-title-group {
         align-items: center;
     }
