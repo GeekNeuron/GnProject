@@ -5,17 +5,16 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- DOM Elements ---
-    const themeSwitcher = document.getElementById('theme-switcher');
+    const themeSwitcher = document.querySelector('.header-text');
     const body = document.body;
     const tabLinks = document.querySelectorAll('.tab-link');
     const tabContents = document.querySelectorAll('.tab-content');
     const mainContent = document.querySelector('main');
     const searchBar = document.getElementById('search-bar');
-    const resetBtn = document.getElementById('reset-filter-btn');
     const noResultsMsg = document.getElementById('no-results-message');
     const lightbox = document.getElementById('lightbox');
     
-    let allProjects = []; // Store all projects from JSON to enable filtering
+    let allProjects = [];
 
     /**
      * Initializes the application by fetching project data.
@@ -92,8 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const searchTerm = searchBar.value.toLowerCase();
         let visibleProjectsCount = 0;
         
-        resetBtn.classList.toggle('hidden', !searchTerm);
-
         document.querySelectorAll('.project-container').forEach(container => {
             const projectIndex = parseInt(container.dataset.projectIndex, 10);
             const project = allProjects[projectIndex];
@@ -114,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        noResultsMsg.classList.toggle('hidden', visibleProjectsCount > 0);
+        noResultsMsg.classList.toggle('hidden', visibleProjectsCount > 0 && searchTerm !== '');
     }
     
     // --- Event Listeners ---
@@ -146,12 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 3. Search and Reset
+    // 3. Search
     searchBar.addEventListener('input', filterProjects);
-    resetBtn.addEventListener('click', () => {
-        searchBar.value = '';
-        filterProjects();
-    });
 
     // 4. Main content event delegation (Accordion, Lightbox, Tags)
     mainContent.addEventListener('click', (event) => {
