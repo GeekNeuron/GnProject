@@ -33,14 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
      * Renders all project cards into their respective tab containers.
      */
     function renderProjects(projects) {
-        tabContents.forEach(content => content.innerHTML = '');
-        projects.forEach((project, index) => {
-            const projectCardHTML = createProjectCardHTML(project, index);
-            const container = document.getElementById(`${project.category}-content`);
-            if (container) {
-                container.innerHTML += projectCardHTML;
-            }
-        });
+    projects.forEach((project, index) => {
+        const projectCardHTML = createProjectCardHTML(project, index);
+        const container = document.getElementById(`${project.category}-content`);
+        if (container) {
+            container.innerHTML += projectCardHTML;
+        }
+      });
     }
 
     /**
@@ -90,23 +89,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. Tab System (Simplified and Corrected)
-    tabLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            // Deactivate all tabs
-            tabLinks.forEach(item => {
-                item.classList.remove('active');
-                item.setAttribute('aria-selected', 'false');
-            });
-            tabContents.forEach(item => item.classList.add('hidden'));
+    /**
+ * Renders projects and displays a message in empty tabs.
+ */
+function renderProjects(projects) {
+    // مرحله اول: تمام پروژه‌ها در تب‌های خودشان رندر می‌شوند
+    tabContents.forEach(content => content.innerHTML = '');
+    projects.forEach((project, index) => {
+        const projectCardHTML = createProjectCardHTML(project, index);
+        const container = document.getElementById(`${project.category}-content`);
+        if (container) {
+            container.innerHTML += projectCardHTML;
+        }
+    });
 
-            // Activate the clicked tab
-            link.classList.add('active');
-            link.setAttribute('aria-selected', 'true');
-            const activeTabContent = document.getElementById(link.getAttribute('aria-controls'));
-            if (activeTabContent) {
+    // مرحله دوم: اینجا همان قطعه کدی است که پرسیدید کجا قرار دهم
+    // این کد بررسی می‌کند کدام تب‌ها خالی مانده‌اند و پیام را نمایش می‌دهد
+    tabContents.forEach(content => {
+        if (content.childElementCount === 0) {
+            content.innerHTML = `<p class="empty-tab-message">No projects have been created for this tab yet.</p>`;
+        }
+    });
+}
+
+// 2. Tab System (Corrected Logic)
+tabLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        tabLinks.forEach(item => {
+            item.classList.remove('active');
+            item.setAttribute('aria-selected', 'false');
+        });
+        
+        tabContents.forEach(item => {
+            item.classList.add('hidden');
+        });
+
+        link.classList.add('active');
+        link.setAttribute('aria-selected', 'true');
+        
+        const activeTabContent = document.getElementById(link.getAttribute('aria-controls'));
+        if (activeTabContent) {
             activeTabContent.classList.remove('hidden');
-            }
-
+        }
+    });
+});
+    
     // 4. Main content event delegation (Accordion, Lightbox, Tags)
     mainContent.addEventListener('click', (event) => {
         const target = event.target;
