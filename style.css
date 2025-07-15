@@ -11,6 +11,7 @@
     --button-hover-bg: #2980b9;
     --button-repo-bg: #2ecc71;
     --button-repo-hover-bg: #27ae60;
+    --noise-color: rgba(0, 0, 0, 0.05);
 }
 
 body.dark-theme {
@@ -24,6 +25,7 @@ body.dark-theme {
     --button-hover-bg: #1d4357;
     --button-repo-bg: #238636;
     --button-repo-hover-bg: #2ea043;
+    --noise-color: rgba(255, 255, 255, 0.05);
 }
 
 * {
