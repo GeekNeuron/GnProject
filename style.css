@@ -258,7 +258,7 @@ main {
 }
 
 .project-info h3 {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     margin-bottom: 0.1rem;
 }
 
@@ -278,9 +278,9 @@ main {
 .tag {
     background-color: var(--tag-bg);
     color: var(--tag-text);
-    padding: 0.3rem 0.7rem;
+    padding: 0.25rem 0.6rem;
     border-radius: 8px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
     border: none;
     font-family: 'Vazirmatn', sans-serif;
