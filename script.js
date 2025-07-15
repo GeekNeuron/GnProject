@@ -30,16 +30,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Renders all project cards into their respective tab containers.
+     * Renders projects and displays a message in empty tabs.
      */
     function renderProjects(projects) {
-    projects.forEach((project, index) => {
-        const projectCardHTML = createProjectCardHTML(project, index);
-        const container = document.getElementById(`${project.category}-content`);
-        if (container) {
-            container.innerHTML += projectCardHTML;
-        }
-      });
+        // 1. Render all projects into their respective containers
+        projects.forEach((project, index) => {
+            const projectCardHTML = createProjectCardHTML(project, index);
+            const container = document.getElementById(`${project.category}-content`);
+            if (container) {
+                container.innerHTML += projectCardHTML;
+            }
+        });
+
+        // 2. Check each tab content container for emptiness
+        tabContents.forEach(content => {
+            if (content.childElementCount === 0) {
+                content.innerHTML = `<p class="empty-tab-message">No projects have been created for this tab yet.</p>`;
+            }
+        });
     }
 
     /**
@@ -88,53 +96,29 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
     });
 
-    // 2. Tab System (Simplified and Corrected)
-    /**
- * Renders projects and displays a message in empty tabs.
- */
-function renderProjects(projects) {
-    // مرحله اول: تمام پروژه‌ها در تب‌های خودشان رندر می‌شوند
-    tabContents.forEach(content => content.innerHTML = '');
-    projects.forEach((project, index) => {
-        const projectCardHTML = createProjectCardHTML(project, index);
-        const container = document.getElementById(`${project.category}-content`);
-        if (container) {
-            container.innerHTML += projectCardHTML;
-        }
-    });
+    // 2. Tab System (Corrected Logic)
+    tabLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            tabLinks.forEach(item => {
+                item.classList.remove('active');
+                item.setAttribute('aria-selected', 'false');
+            });
+            
+            tabContents.forEach(item => {
+                item.classList.add('hidden');
+            });
 
-    // مرحله دوم: اینجا همان قطعه کدی است که پرسیدید کجا قرار دهم
-    // این کد بررسی می‌کند کدام تب‌ها خالی مانده‌اند و پیام را نمایش می‌دهد
-    tabContents.forEach(content => {
-        if (content.childElementCount === 0) {
-            content.innerHTML = `<p class="empty-tab-message">No projects have been created for this tab yet.</p>`;
-        }
-    });
-}
-
-// 2. Tab System (Corrected Logic)
-tabLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        tabLinks.forEach(item => {
-            item.classList.remove('active');
-            item.setAttribute('aria-selected', 'false');
+            link.classList.add('active');
+            link.setAttribute('aria-selected', 'true');
+            
+            const activeTabContent = document.getElementById(link.getAttribute('aria-controls'));
+            if (activeTabContent) {
+                activeTabContent.classList.remove('hidden');
+            }
         });
-        
-        tabContents.forEach(item => {
-            item.classList.add('hidden');
-        });
-
-        link.classList.add('active');
-        link.setAttribute('aria-selected', 'true');
-        
-        const activeTabContent = document.getElementById(link.getAttribute('aria-controls'));
-        if (activeTabContent) {
-            activeTabContent.classList.remove('hidden');
-        }
     });
-});
-    
-    // 4. Main content event delegation (Accordion, Lightbox, Tags)
+
+    // 3. Main content event delegation (Accordion, Lightbox)
     mainContent.addEventListener('click', (event) => {
         const target = event.target;
 
@@ -152,8 +136,9 @@ tabLinks.forEach(link => {
             lightbox.classList.add('active');
             document.getElementById('lightbox-img').src = target.src;
         }
+    });
 
-    // 5. Lightbox Close
+    // 4. Lightbox Close
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox || e.target.matches('.close-lightbox')) {
             lightbox.classList.remove('active');
