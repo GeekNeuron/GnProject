@@ -94,19 +94,19 @@ header {
     margin: 0;
 }
 
-/* Header Responsive */
 @media (max-width: 768px) {
     .header-content {
         flex-direction: column;
         align-items: center;
         gap: 1rem;
     }
-        .header-text {
+    .header-text {
         gap: 0.5rem;
     }
     .header-title-group {
         align-items: center;
     }
+}
 
 /* Tabs Navigation */
 .tabs {
@@ -169,6 +169,21 @@ main {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+.hidden {
+    display: none !important;
+}
+
+.empty-tab-message {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--container-bg);
+    color: var(--tag-text);
+    border-radius: 16px;
+    border: 2px dashed var(--border-color);
+    margin-top: 1rem;
+}
+
 
 /* Project Card */
 .project-container {
@@ -379,20 +394,10 @@ footer {
     font-size: 1.1rem;
 }
 
-/* Footer Responsive */
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column;
         gap: 0.75rem;
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    /* Styles for header are already defined above, so they are removed from here */
-    
-    .header-title-group {
-        text-align: center; /* This rule is unique, keep it */
     }
     .tabs {
         justify-content: flex-start;
@@ -410,14 +415,8 @@ footer {
     }
 }
 
-/* FIX: Add these styles for search, tabs, and lightbox functionality */
 
-/* This class fixes both the search filter and the tab switching issue */
-.hidden {
-    display: none !important;
-}
-
-/* These are missing styles for the image lightbox popup */
+/* Lightbox */
 .lightbox {
     position: fixed;
     z-index: 1000;
@@ -451,18 +450,4 @@ footer {
     font-size: 2.5rem;
     color: #fff;
     cursor: pointer;
-}
-
-.empty-tab-message {
-    text-align: center;
-    padding: 2rem;
-    background-color: var(--container-bg);
-    color: var(--tag-text);
-    border-radius: 16px;
-    border: 2px dashed var(--border-color);
-    margin-top: 1rem;
-}
-
-.hidden {
-    display: none !important;
 }
