@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GNProject</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="header-text">
+                <i class="fa-solid fa-code"></i>
+                <div class="header-title-group">
+                    <h1>GNProject</h1>
+                    <p class="header-subtitle">Showcasing Creative Projects</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav class="tabs" role="tablist" aria-label="Project Categories">
+        <button role="tab" aria-controls="android-content" aria-selected="true" class="tab-link active" data-tab="android"><i class="fa-brands fa-android"></i> Android</button>
+        <button role="tab" aria-controls="extensions-content" aria-selected="false" class="tab-link" data-tab="extensions"><i class="fa-solid fa-puzzle-piece"></i> Extensions</button>
+        <button role="tab" aria-controls="websites-content" aria-selected="false" class="tab-link" data-tab="websites"><i class="fa-solid fa-globe"></i> Websites</button>
+        <button role="tab" aria-controls="windows-content" aria-selected="false" class="tab-link" data-tab="windows"><i class="fa-brands fa-windows"></i> Windows</button>
+        <button role="tab" aria-controls="linux-content" aria-selected="false" class="tab-link" data-tab="linux"><i class="fa-brands fa-linux"></i> Linux</button>
+        <button role="tab" aria-controls="ios-content" aria-selected="false" class="tab-link" data-tab="ios"><i class="fa-brands fa-apple"></i> iOS</button>
+    </nav>
+
+    <main>
+        <div id="android-content" role="tabpanel" class="tab-content active"></div>
+        <div id="extensions-content" role="tabpanel" class="tab-content hidden"></div>
+        <div id="websites-content" role="tabpanel" class="tab-content hidden"></div>
+        <div id="windows-content" role="tabpanel" class="tab-content hidden"></div>
+        <div id="linux-content" role="tabpanel" class="tab-content hidden"></div>
+        <div id="ios-content" role="tabpanel" class="tab-content hidden"></div>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <span>© 2025 GeekNeuron, Inc.</span>
+            <nav class="footer-socials">
+                <a href="https://github.com/GeekNeuron" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="#" target="_blank" aria-label="X (Twitter)"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </nav>
+        </div>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
